@@ -17,3 +17,13 @@ notes.forEach(function (item , index) {
 
 console.log(notes);
 console.log(notes.length);
+
+// Good old for loop, good for if we have no existing array data and we what to add some
+for (let count = 0; count < notes.length; count++) {
+  console.log(notes[count]);
+}
+
+// reversing it
+for (let count = notes.length - 1; count >= 0; count--) {
+  console.log(notes[count]);
+}
