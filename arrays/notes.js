@@ -11,5 +11,9 @@ const notes = ['Note 1', 'Note 2', 'Note 3'];
 notes.splice(2,0, 'New third Item'); // This will insert a new item at index 2 position
 notes.splice(1,1, 'This is new item at index 1'); // this replaces item at index 1
 
+notes.forEach(function (item , index) {
+  console.log(index, item);
+});
+
 console.log(notes);
 console.log(notes.length);
