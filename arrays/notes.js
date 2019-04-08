@@ -27,3 +27,60 @@ for (let count = 0; count < notes.length; count++) {
 for (let count = notes.length - 1; count >= 0; count--) {
   console.log(notes[count]);
 }
+
+// indexOf - to search the position of a particular text/number in an array. Returns -1 if not found
+console.log(notes.indexOf('Note 1'));
+console.log(notes.indexOf('Note 6'));
+
+const moreNotes =[{
+  title: 'My next trip.',
+  body: 'I would like to go to Iceland. I find the country fascinating'
+}, {
+  title: 'Habits to work on',
+  body: 'Exercise more. Less sitting dow. Eat more healthily'
+}, {
+  title: 'Movies looking forward to',
+  body: 'Avengers: Endgame, Joker and Wonder Woman 84'
+}
+];
+
+// NB - below will be false (-1), indexOf uses === in the background, so {} == {} will return false  because
+// different memory locations. What makes them equal is if they are at the same place in memory
+console.log(moreNotes.indexOf({}));
+
+a = {
+  num: 1
+};
+
+b = {
+  num: 1
+};
+
+console.log(a === b); //false
+
+//Two ways to search for objects in arrays, findIndex - returns the index number of searched item or -1 if not found
+// then there is find - retuns the actual object or undefined if not found
+
+const findNote = function (notes, noteTitle) {
+  return moreNotes.find(function (note, index) {
+    return note.title.toLowerCase() === noteTitle.toLowerCase();
+  });
+};
+
+// const findNote = function (notes, noteTitle) {
+//   const index = moreNotes.findIndex(function (note, index) {
+//     return note.title.toLowerCase() === noteTitle.toLowerCase();
+//   });
+//   return moreNotes[index];
+// };
+
+const note = findNote(notes, 'Movies looking forward to');
+console.log(note);
+
+// // use findIndex when working with objects. It finds the first occurrence then stops
+// const index = moreNotes.findIndex((note, index) => {
+//   console.log(note);
+//   return note.title === 'My next trip.'
+// });
+//
+// console.log(index);
