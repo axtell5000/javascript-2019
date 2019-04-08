@@ -35,7 +35,24 @@ const getThingsToDo = (todos) => {
   });
 };
 
-console.log(getThingsToDo(todos))
+console.log(getThingsToDo(todos));
+
+//Sorting
+const sortTodos = (todos) => {
+  todos.sort((a, b) => {
+    if (a.completed < b.completed) {
+      return -1;
+    } else if (b.completed < a.completed) {
+      return 1;
+    } else {
+      return 0;
+    }
+  })
+};
+
+sortTodos(todos);
+console.log('sort', todos);
+
 
 
 deleteTodo(todos, '!!Go to store');

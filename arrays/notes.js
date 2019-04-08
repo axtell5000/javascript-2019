@@ -101,3 +101,23 @@ const filterNotes = function (notes, query) {
 
 
 console.log(filterNotes(moreNotes, 'trip'));
+
+/* SORTING ARRAYS */
+
+const sortNotes = (notes) => {
+  notes.sort((a, b) => {
+    if (a.title.toLowerCase() < b.title.toLowerCase()) {
+      return -1;
+    } else if (b.title.toLowerCase() < a.title.toLowerCase()) {
+      return 1;
+    } else {
+      return 0;
+    }
+  })
+};
+
+sortNotes(moreNotes);
+
+console.log('sorted', moreNotes);
+
+
