@@ -16,6 +16,7 @@ const todos = [{
 }];
 
 
+// Find
 
 const deleteTodo = function (array, todoString) {
   const index = array.findIndex(function (todo, index) {
@@ -27,9 +28,19 @@ const deleteTodo = function (array, todoString) {
 
 };
 
+// Sort
+const getThingsToDo = (todos) => {
+  return todos.filter((todo) => {
+   return todo.completed === false;
+  });
+};
+
+console.log(getThingsToDo(todos))
+
+
 deleteTodo(todos, '!!Go to store');
 deleteTodo(todos, '!!Mowing lawn');
-console.log(todos);
+// console.log(todos);
 
 // todos.splice(2, 1);
 // todos.push('running');

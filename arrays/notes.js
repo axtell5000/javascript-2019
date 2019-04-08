@@ -28,6 +28,8 @@ for (let count = notes.length - 1; count >= 0; count--) {
   console.log(notes[count]);
 }
 
+/* SEARCHING ARRAYS */
+
 // indexOf - to search the position of a particular text/number in an array. Returns -1 if not found
 console.log(notes.indexOf('Note 1'));
 console.log(notes.indexOf('Note 6'));
@@ -84,3 +86,18 @@ console.log(note);
 // });
 //
 // console.log(index);
+
+
+/* FILTERING ARRAYS */
+
+const filterNotes = function (notes, query) {
+  return notes.filter((note, index) => {
+    const isTitleMatch = note.title.toLowerCase().includes(query.toLowerCase());
+    const isBodyMatch = note.body.toLowerCase().includes(query.toLowerCase());
+    return isTitleMatch || isBodyMatch;
+  });
+};
+
+
+
+console.log(filterNotes(moreNotes, 'trip'));
