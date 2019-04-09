@@ -40,3 +40,8 @@ span.textContent = stillTodoCount;
 document.querySelector('#add-todo').addEventListener('click', (e) => {
   console.log('Add Todo button clicked');
 });
+
+document.querySelector('#new-todo-text').addEventListener('input', (e) => {
+  console.log(e.target.value);
+});
+

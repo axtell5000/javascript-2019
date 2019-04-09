@@ -37,3 +37,8 @@ document.querySelector('#create-note').addEventListener('click', (event) => {
 document.querySelector('#remove-all').addEventListener('click', (event) => {
   document.querySelectorAll('.note').forEach(note => note.remove());
 });
+
+
+document.querySelector('#search-text').addEventListener('input', (e) => {
+  console.log(e.target.value);
+});
