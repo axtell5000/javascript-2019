@@ -36,3 +36,7 @@ span.textContent = stillTodoCount;
 //     p.remove();
 //   }
 // });
+
+document.querySelector('#add-todo').addEventListener('click', (e) => {
+  console.log('Add Todo button clicked');
+});
