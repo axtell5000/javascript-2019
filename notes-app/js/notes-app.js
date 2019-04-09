@@ -9,3 +9,9 @@ ps.forEach((p) => {
   console.log(p.textContent);
   p.remove()
 });
+
+
+// Adding a new element
+const newPara = document.createElement('p');
+newPara.textContent = 'This is a new element from Javascript';
+document.querySelector('body').appendChild(newPara);
