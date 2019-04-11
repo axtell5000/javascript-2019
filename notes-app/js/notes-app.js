@@ -57,12 +57,14 @@ document.querySelector('#create-note').addEventListener('click', (event) => {
   event.target.textContent = "The button was clicked";
 });
 
-document.querySelector('#remove-all').addEventListener('click', (event) => {
-  document.querySelectorAll('.note').forEach(note => note.remove());
-});
-
-
 document.querySelector('#search-text').addEventListener('input', (e) => {
   filters.searchText = e.target.value;
   renderNotes(notes, filters);
+});
+
+document.querySelector('#name-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  // e.target.elements - targets all elements in selected element and puts them in an array
+  console.log(e.target.elements.firstName.value);
+  e.target.elements.fistName.value = '';
 });

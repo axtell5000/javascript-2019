@@ -35,9 +35,10 @@ const calcStillTodo = (filteredTodos) => {
 
 const renderTodos = (todos) => {
   const todoList = document.querySelector('#todo-list');
-
+  console.log(todos);
   // filtering the array based on the search text
   const filteredTodos = todos.filter((todo) => {
+
     return todo.todo.toLowerCase().includes(filters.searchText.toLowerCase());
   });
 
@@ -64,12 +65,19 @@ renderTodos(todos, filters); // initial run
 //   }
 // });
 
-document.querySelector('#add-todo').addEventListener('click', (e) => {
-  console.log('Add Todo button clicked');
-});
 
 // listen for changes in input field, use the input to filter the todos array
-document.querySelector('#new-todo-text').addEventListener('input', (e) => {
+document.querySelector('#search-text').addEventListener('input', (e) => {
   filters.searchText = e.target.value;
+  renderTodos(todos, filters);
+});
+
+document.querySelector('#todo-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  todos.push({
+    todo: e.target.elements.newTodo.value,
+    completed: false
+  });
+  e.target.elements.newTodo.value = '';
   renderTodos(todos, filters);
 });
