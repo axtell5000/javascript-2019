@@ -62,9 +62,6 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
   renderNotes(notes, filters);
 });
 
-document.querySelector('#name-form').addEventListener('submit', (e) => {
-  e.preventDefault();
-  // e.target.elements - targets all elements in selected element and puts them in an array
-  console.log(e.target.elements.firstName.value);
-  e.target.elements.fistName.value = '';
+document.querySelector('#for-fun').addEventListener('change', (e) => {
+  console.log(e.target.checked);
 });

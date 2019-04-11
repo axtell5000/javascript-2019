@@ -17,7 +17,8 @@ const todos = [{
 
 
 const filters = {
-  searchText: ''
+  searchText: '',
+  hideCompleted: false
 };
 
 const calcStillTodo = (filteredTodos) => {
@@ -33,13 +34,21 @@ const calcStillTodo = (filteredTodos) => {
   span.textContent = stillTodoCount;
 };
 
-const renderTodos = (todos) => {
+const renderTodos = (todos, filters) => {
   const todoList = document.querySelector('#todo-list');
-  console.log(todos);
-  // filtering the array based on the search text
-  const filteredTodos = todos.filter((todo) => {
 
+  // filtering the array based on the search text
+  let filteredTodos = todos.filter((todo) => {
     return todo.todo.toLowerCase().includes(filters.searchText.toLowerCase());
+  });
+  
+  // then filter again
+  filteredTodos = filteredTodos.filter((todo) => {
+    if (filters.hideCompleted) {
+      return !todo.completed;
+    } else {
+      return true;
+    }
   });
 
   todoList.innerHTML = ''; // reset area before rendering
@@ -79,5 +88,10 @@ document.querySelector('#todo-form').addEventListener('submit', (e) => {
     completed: false
   });
   e.target.elements.newTodo.value = '';
+  renderTodos(todos, filters);
+});
+
+document.querySelector('#hide-completed').addEventListener('change', (e) => {
+  filters.hideCompleted = e.target.checked;
   renderTodos(todos, filters);
 });
