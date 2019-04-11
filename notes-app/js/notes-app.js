@@ -1,5 +1,5 @@
 
-const otes =[{
+const notes =[{
   title: 'My next trip.',
   body: 'I would like to go to Iceland. I find the country fascinating'
 }, {
@@ -10,6 +10,29 @@ const otes =[{
   body: 'Avengers: Endgame, Joker and Wonder Woman 84'
 }
 ];
+
+const filters = {
+  searchText: ''
+};
+
+const renderNotes = (notes, filters) => {
+
+  const noteArea = document.querySelector('#notes-area');
+
+  const filteredNotes = notes.filter((note) => {
+    return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
+  });
+
+  noteArea.innerHTML = '';
+
+  filteredNotes.forEach((note) => {
+    const noteEl = document.createElement('p');
+    noteEl.textContent = note.title;
+    noteArea.appendChild(noteEl);
+  })
+};
+
+renderNotes(notes, filters);
 
 // const p = document.querySelector('p');
 //
@@ -40,5 +63,6 @@ document.querySelector('#remove-all').addEventListener('click', (event) => {
 
 
 document.querySelector('#search-text').addEventListener('input', (e) => {
-  console.log(e.target.value);
+  filters.searchText = e.target.value;
+  renderNotes(notes, filters);
 });

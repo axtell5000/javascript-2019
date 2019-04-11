@@ -15,21 +15,48 @@ const todos = [{
   completed: false
 }];
 
-let stillTodoCount = 0;
 
-const span = document.getElementById('todos-left');
+const filters = {
+  searchText: ''
+};
 
-todos.forEach(todo => {
-  if (!todo.completed) {
-    stillTodoCount = stillTodoCount + 1;
-  }
+const calcStillTodo = (filteredTodos) => {
+  const span = document.getElementById('todos-left');
+  let stillTodoCount = 0;
 
-  const newPara = document.createElement('p');
-  newPara.textContent = todo.todo;
-  document.querySelector('#todo-list').appendChild(newPara);
-});
+  filteredTodos.forEach((todo) => {
+    if (!todo.completed) {
+      stillTodoCount = stillTodoCount + 1;
+    }
+  });
 
-span.textContent = stillTodoCount;
+  span.textContent = stillTodoCount;
+};
+
+const renderTodos = (todos) => {
+  const todoList = document.querySelector('#todo-list');
+
+  // filtering the array based on the search text
+  const filteredTodos = todos.filter((todo) => {
+    return todo.todo.toLowerCase().includes(filters.searchText.toLowerCase());
+  });
+
+  todoList.innerHTML = ''; // reset area before rendering
+
+  // Here rendering the filtered array
+  filteredTodos.forEach(todo => {
+    const newPara = document.createElement('p');
+    newPara.textContent = todo.todo;
+    todoList.appendChild(newPara);
+  });
+
+  /* calling the still todo function using the filtered array*/
+  calcStillTodo(filteredTodos);
+};
+
+renderTodos(todos, filters); // initial run
+
+
 
 // ps.forEach((p, index) => {
 //   if (p.textContent.includes('the')) {
@@ -41,7 +68,8 @@ document.querySelector('#add-todo').addEventListener('click', (e) => {
   console.log('Add Todo button clicked');
 });
 
+// listen for changes in input field, use the input to filter the todos array
 document.querySelector('#new-todo-text').addEventListener('input', (e) => {
-  console.log(e.target.value);
+  filters.searchText = e.target.value;
+  renderTodos(todos, filters);
 });
-
