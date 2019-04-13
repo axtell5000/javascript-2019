@@ -1,19 +1,4 @@
-const todos = [{
-  todo: 'Cleaning room',
-  completed: false
-},{
-  todo: 'Mowing lawn',
-  completed: false
-},{
-  todo: 'Read some of book',
-  completed: true
-},{
-  todo: 'Eat breakfast',
-  completed: true
-},{
-  todo: 'Go to store',
-  completed: false
-}];
+let todos = [];
 
 
 const filters = {
@@ -37,6 +22,8 @@ const calcStillTodo = (filteredTodos) => {
 const renderTodos = (todos, filters) => {
   const todoList = document.querySelector('#todo-list');
 
+
+
   // filtering the array based on the search text
   let filteredTodos = todos.filter((todo) => {
     return todo.todo.toLowerCase().includes(filters.searchText.toLowerCase());
@@ -56,13 +43,28 @@ const renderTodos = (todos, filters) => {
   // Here rendering the filtered array
   filteredTodos.forEach(todo => {
     const newPara = document.createElement('p');
-    newPara.textContent = todo.todo;
+
+    if (todo.todo.length > 0) {
+      newPara.textContent = todo.todo;
+    } else {
+      newPara.textContent = "No proper todo";
+      todo.completed = true;
+    }
+
     todoList.appendChild(newPara);
   });
 
   /* calling the still todo function using the filtered array*/
   calcStillTodo(filteredTodos);
 };
+
+// Working with local storage
+const todosJson = localStorage.getItem('todos');
+
+if (todosJson !== null) {
+  todos = JSON.parse(todosJson);
+}
+
 
 renderTodos(todos, filters); // initial run
 
@@ -88,6 +90,7 @@ document.querySelector('#todo-form').addEventListener('submit', (e) => {
     completed: false
   });
   e.target.elements.newTodo.value = '';
+  localStorage.setItem('todos', JSON.stringify(todos));
   renderTodos(todos, filters);
 });
 

@@ -1,15 +1,5 @@
 
-const notes =[{
-  title: 'My next trip.',
-  body: 'I would like to go to Iceland. I find the country fascinating'
-}, {
-  title: 'Habits to work on',
-  body: 'Exercise more. Less sitting dow. Eat more healthily'
-}, {
-  title: 'Movies looking forward to',
-  body: 'Avengers: Endgame, Joker and Wonder Woman 84'
-}
-];
+let notes =[];
 
 const filters = {
   searchText: ''
@@ -27,12 +17,30 @@ const renderNotes = (notes, filters) => {
 
   filteredNotes.forEach((note) => {
     const noteEl = document.createElement('p');
-    noteEl.textContent = note.title;
+
+    if(note.title.length > 0) {
+      noteEl.textContent = note.title;
+    } else {
+      noteEl.textContent = 'Unnamed note';
+    }
+
     noteArea.appendChild(noteEl);
   })
 };
 
 renderNotes(notes, filters);
+
+// WORKING WITH LOCAL STORAGE - only handle strings
+
+const notesJson = localStorage.getItem('notes');
+
+if (notesJson !== null) {
+  notes = JSON.parse(notesJson);
+}
+
+const userJSON = localStorage.getItem('user');
+const user = JSON.parse(userJSON);
+console.log(`${user.name} is ${user.age} years old`);
 
 // const p = document.querySelector('p');
 //
@@ -54,7 +62,12 @@ renderNotes(notes, filters);
 
 // Event listeners
 document.querySelector('#create-note').addEventListener('click', (event) => {
-  event.target.textContent = "The button was clicked";
+  notes.push({
+    title: '',
+    body: ''
+  });
+  localStorage.setItem('notes', JSON.stringify(notes));
+  renderNotes(notes, filters);
 });
 
 document.querySelector('#search-text').addEventListener('input', (e) => {
