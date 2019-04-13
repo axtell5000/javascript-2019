@@ -1,46 +1,14 @@
 
-let notes =[];
+const notes = getSavedNotes();
 
 const filters = {
   searchText: ''
 };
 
-const renderNotes = (notes, filters) => {
-
-  const noteArea = document.querySelector('#notes-area');
-
-  const filteredNotes = notes.filter((note) => {
-    return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
-  });
-
-  noteArea.innerHTML = '';
-
-  filteredNotes.forEach((note) => {
-    const noteEl = document.createElement('p');
-
-    if(note.title.length > 0) {
-      noteEl.textContent = note.title;
-    } else {
-      noteEl.textContent = 'Unnamed note';
-    }
-
-    noteArea.appendChild(noteEl);
-  })
-};
 
 renderNotes(notes, filters);
 
-// WORKING WITH LOCAL STORAGE - only handle strings
 
-const notesJson = localStorage.getItem('notes');
-
-if (notesJson !== null) {
-  notes = JSON.parse(notesJson);
-}
-
-const userJSON = localStorage.getItem('user');
-const user = JSON.parse(userJSON);
-console.log(`${user.name} is ${user.age} years old`);
 
 // const p = document.querySelector('p');
 //
