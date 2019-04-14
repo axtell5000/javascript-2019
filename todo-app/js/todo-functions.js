@@ -49,8 +49,6 @@ const calcStillTodo = (filteredTodos) => {
 const renderTodos = (todos, filters) => {
   const todoList = document.querySelector('#todo-list');
 
-
-
   // filtering the array based on the search text
   let filteredTodos = todos.filter((todo) => {
     return todo.todo.toLowerCase().includes(filters.searchText.toLowerCase());
@@ -70,7 +68,6 @@ const renderTodos = (todos, filters) => {
   // Here rendering the filtered array
   filteredTodos.forEach(todo => {
     const newPara = generateTodoDOM(todo);
-
     todoList.appendChild(newPara);
   });
 
