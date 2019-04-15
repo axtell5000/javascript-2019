@@ -15,6 +15,16 @@ const getSavedTodos = () => {
 
 const saveTodos = todos => localStorage.setItem('todos', JSON.stringify(todos));
 
+const removeTodo = (id) => {
+  const todosIndex = todos.findIndex((todo) => {
+    return todo.id === id;
+  });
+
+  if (todosIndex > -1) {
+    todos.splice(todosIndex, 1);
+  }
+};
+
 const generateTodoDOM = (todo) => {
   const todoEl = document.createElement('div');
   const checkbox = document.createElement('input');
@@ -36,6 +46,11 @@ const generateTodoDOM = (todo) => {
   // setup the remove note button
   button.textContent = 'x';
   todoEl.appendChild(button);
+  button.addEventListener('click', () => {
+    removeTodo(todo.id);
+    saveTodos(todos);
+    renderTodos(todos, filters);
+  });
 
 
   return todoEl;
