@@ -34,7 +34,7 @@ document.querySelector('#create-note').addEventListener('click', (event) => {
     title: '',
     body: ''
   });
-  localStorage.setItem('notes', JSON.stringify(notes));
+  saveNotes(notes);
   renderNotes(notes, filters);
 });
 

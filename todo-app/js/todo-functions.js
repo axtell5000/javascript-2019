@@ -16,16 +16,29 @@ const getSavedTodos = () => {
 const saveTodos = todos => localStorage.setItem('todos', JSON.stringify(todos));
 
 const generateTodoDOM = (todo) => {
-  const newPara = document.createElement('p');
+  const todoEl = document.createElement('div');
+  const checkbox = document.createElement('input');
+  const textEl = document.createElement('span');
+  const button = document.createElement('button');
 
-  if (todo.todo.length > 0) {
-    newPara.textContent = todo.todo;
-  } else {
-    newPara.textContent = "No proper todo";
-    todo.completed = true;
-  };
+  // A BIG NB - When doing complex DOM work, keep in mind position of code is important
+  // e.g below the remove button will be last because its appendedChild code was last so it will appear last in the
+  // parent div. The last of the children
 
-  return newPara;
+  // setup checkbox element
+  checkbox.setAttribute('type', 'checkbox');
+  todoEl.appendChild(checkbox);
+
+  // setup the todo text
+  textEl.textContent = todo.todo;
+  todoEl.appendChild(textEl);
+
+  // setup the remove note button
+  button.textContent = 'x';
+  todoEl.appendChild(button);
+
+
+  return todoEl;
 };
 
 // Summary display

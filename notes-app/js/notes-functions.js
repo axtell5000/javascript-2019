@@ -12,16 +12,30 @@ const getSavedNotes = () => {
   }
 };
 
+// Save the notes to localStorage
+const saveNotes = (notes) => {
+  localStorage.setItem('notes', JSON.stringify(notes))
+};
+
 // Generate DOM structure for a note
 
 const generateNoteDOM = (note) => {
-  const noteEl = document.createElement('p');
+  const noteEl = document.createElement('div');
+  const textEl = document.createElement('span');
+  const button = document.createElement('button');
 
+  // setup the remove note button
+  button.textContent = 'x';
+  noteEl.appendChild(button);
+
+  // setup the note text
   if(note.title.length > 0) {
-    noteEl.textContent = note.title;
+    textEl.textContent = note.title;
   } else {
-    noteEl.textContent = 'Unnamed note';
+    textEl.textContent = 'Unnamed note';
   }
+
+  noteEl.appendChild(textEl);
 
   return noteEl;
 
@@ -39,6 +53,7 @@ const renderNotes = (notes, filters) => {
   noteArea.innerHTML = '';
 
   filteredNotes.forEach((note) => {
+    console.log(note.title, 'title');
     const noteEl = generateNoteDOM(note);
     noteArea.appendChild(noteEl);
   })
