@@ -25,6 +25,18 @@ const removeTodo = (id) => {
   }
 };
 
+// toggling the completed data item via the checkbox
+const toggleTodo = (id) => {
+  // using find because we are working with object with a known property, can also use findIndex as well
+  const todo = todos.find((todo) => {
+    return todo.id === id;
+  });
+
+  if (todoo !== undefined) {
+    todo.completed = !todo.completed;
+  }
+};
+
 const generateTodoDOM = (todo) => {
   const todoEl = document.createElement('div');
   const checkbox = document.createElement('input');
@@ -37,6 +49,13 @@ const generateTodoDOM = (todo) => {
 
   // setup checkbox element
   checkbox.setAttribute('type', 'checkbox');
+  checkbox.checked = todo.completed;
+  checkbox.addEventListener('change', () => {
+    toggleTodo(todo.id);
+    saveTodos(todos);
+    renderTodos(todos, filters);
+  });
+
   todoEl.appendChild(checkbox);
 
   // setup the todo text
