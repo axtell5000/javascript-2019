@@ -32,7 +32,7 @@ const removeNote = (id) => {
 
 const generateNoteDOM = (note) => {
   const noteEl = document.createElement('div');
-  const textEl = document.createElement('span');
+  const linkEl = document.createElement('a');
   const button = document.createElement('button');
 
   // setup the remove note button
@@ -45,13 +45,14 @@ const generateNoteDOM = (note) => {
   });
 
   // setup the note text
+  linkEl.setAttribute('href', `/edit.html#${note.id}`)
   if(note.title.length > 0) {
-    textEl.textContent = note.title;
+    linkEl.textContent = note.title;
   } else {
-    textEl.textContent = 'Unnamed note';
+    linkEl.textContent = 'Unnamed note';
   }
 
-  noteEl.appendChild(textEl);
+  noteEl.appendChild(linkEl);
 
   return noteEl;
 
@@ -61,6 +62,8 @@ const generateNoteDOM = (note) => {
 const renderNotes = (notes, filters) => {
 
   const noteArea = document.querySelector('#notes-area');
+
+  console.log(notes, 'in');
 
   const filteredNotes = notes.filter((note) => {
     return note.title.toLowerCase().includes(filters.searchText.toLowerCase());

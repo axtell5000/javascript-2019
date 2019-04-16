@@ -30,13 +30,16 @@ renderNotes(notes, filters);
 
 // Event listeners
 document.querySelector('#create-note').addEventListener('click', (event) => {
+
+  const id = uuidv4(); // doing it like this so assign can access it
+
   notes.push({
-    id: uuidv4(),
+    id: id,
     title: '',
     body: ''
   });
   saveNotes(notes);
-  renderNotes(notes, filters);
+  location.assign(`/edit.html#${id}`);
 });
 
 document.querySelector('#search-text').addEventListener('input', (e) => {
