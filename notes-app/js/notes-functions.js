@@ -63,8 +63,6 @@ const renderNotes = (notes, filters) => {
 
   const noteArea = document.querySelector('#notes-area');
 
-  console.log(notes, 'in');
-
   const filteredNotes = notes.filter((note) => {
     return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
   });
@@ -72,8 +70,7 @@ const renderNotes = (notes, filters) => {
   noteArea.innerHTML = '';
 
   filteredNotes.forEach((note) => {
-    console.log(note.title, 'title');
     const noteEl = generateNoteDOM(note);
     noteArea.appendChild(noteEl);
-  })
+  });
 };
