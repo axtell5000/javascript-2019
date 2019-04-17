@@ -27,3 +27,23 @@ console.log(`Day of month: ${now.getDate()}`);
 console.log(`Hours: ${now.getHours()}`);
 console.log(`Minutes: ${now.getMinutes()}`);
 console.log(`Seconds: ${now.getSeconds()}`);
+
+
+// Working with dates using Momentjs
+const now = moment();
+console.log(now.toString());
+now.minute(1);
+now.subtract(1, 'week').subtract(10, 'days');
+console.log(now.toString());
+
+console.log(now.format('MMMM Do, YYYY'));
+console.log(now.fromNow());
+const nowTimestamp = now.valueOf();
+console.log(nowTimestamp);
+// or reformat timestamp
+console.log(moment(nowTimestamp).toString());
+
+const birthday = moment();
+birthday.year(1972).month(0).date(1);
+
+console.log(birthday.format('MMM D YYYY'));

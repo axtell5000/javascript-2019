@@ -74,3 +74,8 @@ const renderNotes = (notes, filters) => {
     noteArea.appendChild(noteEl);
   });
 };
+
+// Generate the last edited message
+const generateLastEdited = (timestamp) => {
+  return `Last edited ${moment(timestamp).fromNow()}`
+}
