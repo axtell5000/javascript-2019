@@ -4,7 +4,7 @@ const getSavedNotes = () => {
   // WORKING WITH LOCAL STORAGE - only handle strings
 
   const notesJson = localStorage.getItem('notes');
-  return notesJson !== null ? JSON.parse(notesJson) : [];
+  return notesJson ? JSON.parse(notesJson) : [];
 };
 
 // Save the notes to localStorage
