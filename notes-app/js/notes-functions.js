@@ -4,7 +4,15 @@ const getSavedNotes = () => {
   // WORKING WITH LOCAL STORAGE - only handle strings
 
   const notesJson = localStorage.getItem('notes');
-  return notesJson ? JSON.parse(notesJson) : [];
+
+  // One of the good places to put error checking is when you are receiving something outside the progam like
+  // localstorage and database
+  try {
+    return notesJson ? JSON.parse(notesJson) : [];
+  } catch (e) {
+    return [];
+  }
+
 };
 
 // Save the notes to localStorage
