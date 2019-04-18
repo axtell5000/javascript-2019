@@ -1,3 +1,6 @@
+
+'use strict'
+
 // Retrieve todos from local storage
 
 const getSavedTodos = () => {
