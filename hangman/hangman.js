@@ -1,7 +1,8 @@
 const Hangman = function (word, triesAllowed) {
-  this.word = word.toLowerCase().split(''); //split takes string and solits into array
+  this.word = word.toLowerCase().split(''); //split takes string and splits into array
   this.triesAllowed = triesAllowed;
-  this.guessedLetters = ['c', 't']; // this is for the user guesses, right or wrong
+  this.guessedLetters = []; // this is for the user guesses, right or wrong
+  this.status = '';
 };
 
 Hangman.prototype.getPuzzle = function () {
@@ -19,8 +20,45 @@ Hangman.prototype.getPuzzle = function () {
   return puzzle;
 };
 
-const game1 = new Hangman('cat', 3);
-console.log(game1.getPuzzle());
+Hangman.prototype.makeGuess = function (guess) {
+  guess = guess.toLowerCase();
+  const isUnique = !this.guessedLetters.includes(guess);
+  const isBadGuess = !this.word.includes(guess);
 
-const game2 = new Hangman('Cape Town', 10);
-console.log(game2.getPuzzle());
+  if (isUnique) {
+    this.guessedLetters.push(guess);
+  }
+
+  if (isUnique && isBadGuess) {
+    this.triesAllowed--;
+
+  }
+
+  this.calcStatus()
+};
+
+Hangman.prototype.calcStatus = function () {
+  
+  // The every() method tests whether all elements in the array pass the test implemented by the provided function.
+  const finished = this.word.every((letter) => {
+    return this.guessedLetters.includes(letter)
+  });
+
+  // let finished = true;
+  //
+  // this.word.forEach((letter) => {
+  //   if (this.guessedLetters.includes(letter)) {
+  //
+  //   } else {
+  //     finished = false;
+  //   }
+  // });
+
+  if (this.triesAllowed === 0) {
+    this.status = 'failed';
+  } else if (finished) {
+    this.status = 'finished';
+  } else {
+    this.status = 'playing';
+  }
+};

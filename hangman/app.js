@@ -1,25 +1,50 @@
-// Prototype chain for Object: myObject ==> Object.prototype ==> null
-// Prototype chain for Array: myArray ==> Array.prototype ==> Object.prototype ==> null
-// Prototype chain for Function: myFunction ==> Function.prototype ==> Object.prototype ==> null
-// Prototype chain for Sting: myString ==> String.prototype ==> Object.prototype ==> null
-// Prototype chain for Number: myNumber ==> Number.prototype ==> Object.prototype ==> null
-// Prototype chain for Boolean: myBoolean ==> Boolean.prototype ==> Object.prototype ==> null
+// Dom elements
+const startBtn = document.querySelector('#start-game');
+const gameWrapper = document.querySelector('#game-wrapper')
+const gameArea = document.querySelector('#game-area');
 
-const product = {
-  name: 'Influence'
+console.log(gameArea);
+
+
+//
+// console.log(game1.getPuzzle());
+// console.log(game1.triesAllowed);
+
+startBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  startBtn.style.display = 'none';
+  gameWrapper.style.display = 'block';
+  gameArea.style.display = 'block';
+  startGame();
+});
+
+const startGame = () => {
+
+  const game1 = new Hangman('cat', 3);
+  game1.status = 'playing';
+
+  const puzzleProgress = document.querySelector('#puzzle-progress');
+  const guessesLeft = document.querySelector('#guess');
+
+  puzzleProgress.textContent = game1.getPuzzle();
+  guessesLeft.textContent = game1.triesAllowed;
+
+  window.addEventListener('keydown', (e) => {
+    const guess = e.key;
+
+    // Here we exclude keys like enter, shift, ctr etc
+    if (guess.match(/^[a-z0-9 ]$/i)) {
+      game1.makeGuess(guess);
+    }
+    console.log(game1.status);
+    renderGameArea(game1, guessesLeft, puzzleProgress)
+
+  });
 };
 
-console.log(product.hasOwnProperty('name'));
-console.log(product.hasOwnProperty('hasOwnProperty')); // this will be false - hasOwnProperty is on Object.prototype
-// not product
+const renderGameArea = (game1, guessesLeft, puzzleProgress) => {
 
-const team = ['Stephen', 'Ian'];
-console.log(team);
+  guessesLeft.textContent = game1.triesAllowed;
+  puzzleProgress.textContent = game1.getPuzzle();
 
-const item = 'Computer';
-console.log(item);
-
-// We do need to really do below, when we use all methods / props on primitives, JavaScript automatically wraps it in
-// an object wrapper, depending which primitive it is
-const otherItem = new String('Moniter');
-console.log(otherItem);
+};
