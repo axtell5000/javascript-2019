@@ -24,10 +24,10 @@ const startGame = () => {
   game1.status = 'playing';
 
   const puzzleProgress = document.querySelector('#puzzle-progress');
-  const guessesLeft = document.querySelector('#guess');
+  const statusMsg = document.querySelector('#statusMessage');
 
   puzzleProgress.textContent = game1.getPuzzle();
-  guessesLeft.textContent = game1.triesAllowed;
+  statusMsg.textContent = game1.getStatusMessage();
 
   window.addEventListener('keydown', (e) => {
     const guess = e.key;
@@ -37,14 +37,14 @@ const startGame = () => {
       game1.makeGuess(guess);
     }
     console.log(game1.status);
-    renderGameArea(game1, guessesLeft, puzzleProgress)
+    renderGameArea(game1, puzzleProgress, statusMsg)
 
   });
 };
 
-const renderGameArea = (game1, guessesLeft, puzzleProgress) => {
+const renderGameArea = (game1, puzzleProgress, statusMsg) => {
 
-  guessesLeft.textContent = game1.triesAllowed;
   puzzleProgress.textContent = game1.getPuzzle();
+  statusMsg.textContent = game1.getStatusMessage();
 
 };
