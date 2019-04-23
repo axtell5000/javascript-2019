@@ -49,20 +49,37 @@ const renderGameArea = (game1, puzzleProgress, statusMsg) => {
 
 };
 
+getPuzzle((error, puzzle) => {
+  if (error) {
+    console.log(`Error: ${error}`);
+  } else {
+    console.log(puzzle);
+  }
+});
+
+
 
 // Working with http
 // HTTP - HyperText Transfer Protocol
 // Request - What do we want to do
 // Response - What was actually done
 
-// Making a HTTP request
-const request = new XMLHttpRequest();
-request.addEventListener('readystatechange', (e) => {
-  if (e.target.readyState === 4) {
-    const data = JSON.parse(e.target.responseText);
-    console.log(data);
-  }
-});
 
-request.open('GET', 'http://puzzle.mead.io/puzzle');
-request.send()
+// // Challenge
+// const countryCode = 'ZA';
+// const request2 = new XMLHttpRequest();
+//
+// request2.addEventListener('readystatechange', (e) => {
+//   if (e.target.readyState === 4 && e.target.status === 200) {
+//     const data = JSON.parse(e.target.responseText);
+//     const country = data.find(country => country.alpha2Code === countryCode);
+//
+//     console.log(country.name);
+//
+//   } else if (e.target.readyState === 4) {
+//     console.log('Error has taken place');
+//   }
+// });
+//
+// request2.open('GET', 'http://restcountries.eu/rest/v2/all');
+// request2.send();
