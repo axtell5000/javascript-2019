@@ -20,7 +20,7 @@ startBtn.addEventListener('click', (e) => {
 
 const startGame = () => {
 
-  const game1 = new Hangman('cat', 3);
+  const game1 = new Hangman('cat treat', 5);
   game1.status = 'playing';
 
   const puzzleProgress = document.querySelector('#puzzle-progress');

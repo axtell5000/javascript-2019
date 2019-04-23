@@ -47,7 +47,7 @@ class Hangman {
   calcStatus() {
     // The every() method tests whether all elements in the array pass the test implemented by the provided function.
     const finished = this.word.every((letter) => {
-      return this.guessedLetters.includes(letter)
+      return this.guessedLetters.includes(letter) || letter === ' ';
     });
 
     // let finished = true;
