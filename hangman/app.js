@@ -26,8 +26,8 @@ const startGame = () => {
   const puzzleProgress = document.querySelector('#puzzle-progress');
   const statusMsg = document.querySelector('#statusMessage');
 
-  puzzleProgress.textContent = game1.getPuzzle();
-  statusMsg.textContent = game1.getStatusMessage();
+  puzzleProgress.textContent = game1.puzzle;
+  statusMsg.textContent = game1.statusMessage;
 
   window.addEventListener('keydown', (e) => {
     const guess = e.key;
@@ -44,7 +44,7 @@ const startGame = () => {
 
 const renderGameArea = (game1, puzzleProgress, statusMsg) => {
 
-  puzzleProgress.textContent = game1.getPuzzle();
-  statusMsg.textContent = game1.getStatusMessage();
+  puzzleProgress.textContent = game1.puzzle;
+  statusMsg.textContent = game1.statusMessage;
 
 };
