@@ -49,7 +49,7 @@ const renderGameArea = (game1, puzzleProgress, statusMsg) => {
 
 };
 
-getPuzzle((error, puzzle) => {
+getPuzzle('2', (error, puzzle) => {
   if (error) {
     console.log(`Error: ${error}`);
   } else {
@@ -57,6 +57,15 @@ getPuzzle((error, puzzle) => {
   }
 });
 
+getCountry('ZA', (error, country) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(`Country name: ${country.name}`)
+  }
+});
+
+console.log('Do something else');
 
 
 // Working with http
@@ -65,21 +74,4 @@ getPuzzle((error, puzzle) => {
 // Response - What was actually done
 
 
-// // Challenge
-// const countryCode = 'ZA';
-// const request2 = new XMLHttpRequest();
-//
-// request2.addEventListener('readystatechange', (e) => {
-//   if (e.target.readyState === 4 && e.target.status === 200) {
-//     const data = JSON.parse(e.target.responseText);
-//     const country = data.find(country => country.alpha2Code === countryCode);
-//
-//     console.log(country.name);
-//
-//   } else if (e.target.readyState === 4) {
-//     console.log('Error has taken place');
-//   }
-// });
-//
-// request2.open('GET', 'http://restcountries.eu/rest/v2/all');
-// request2.send();
+
