@@ -1,5 +1,13 @@
 
+// Working with http
+// HTTP - HyperText Transfer Protocol
+// Request - What do we want to do
+// Response - What was actually done
 // We are doing it like this to allow for more versatility - allowing extra parameters
+
+// Just a note for reference: new XMLHttpRequest() does not have Promises built in like fetch(). Thats why we created
+// our own and used resolve and reject
+
 const getPuzzle = (wordCount) => new Promise((resolve, reject) => {
 
   const request = new XMLHttpRequest();
@@ -33,3 +41,5 @@ const getCountry = (countryCode) => new Promise((resolve, reject) => {
   countryRequest.open('GET', 'http://restcountries.eu/rest/v2/all');
   countryRequest.send();
 });
+
+

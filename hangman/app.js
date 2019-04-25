@@ -3,8 +3,6 @@ const startBtn = document.querySelector('#start-game');
 const gameWrapper = document.querySelector('#game-wrapper')
 const gameArea = document.querySelector('#game-area');
 
-console.log(gameArea);
-
 
 //
 // console.log(game1.getPuzzle());
@@ -36,7 +34,6 @@ const startGame = () => {
     if (guess.match(/^[a-z0-9 ]$/i)) {
       game1.makeGuess(guess);
     }
-    console.log(game1.status);
     renderGameArea(game1, puzzleProgress, statusMsg)
 
   });
@@ -61,13 +58,21 @@ getCountry('ZA').then((country) => {
   console.log(`Error: ${err}`);
 });
 
-console.log('Do something else');
+// Using fetch, uses Promises automatically
+fetch('http://puzzle.mead.io/puzzle', {}).then((response) => {
+  if (response.status === 200) {
+    return response.json(); // also part of promise, so unsure when we get this back, so we return it so we can chain
+  } else {
+    throw new Error('Unable to fetch the puzzle'); // THis will run the catch block below
+  }
+}).then((data) => {
+  console.log(data.puzzle);
+})
+.catch((error) => {
+  console.log(error);
+});
 
 
-// Working with http
-// HTTP - HyperText Transfer Protocol
-// Request - What do we want to do
-// Response - What was actually done
 
 
 
