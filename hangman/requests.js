@@ -35,4 +35,13 @@ const getCountry = (countryCode) => {
   })
 };
 
-
+// Challenge 2
+const getLocation = () => {
+  return fetch('http://ipinfo.io/json?token={need+token}').then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      throw new Error('An error has taken place');
+    }
+  })
+};

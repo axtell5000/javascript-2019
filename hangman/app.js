@@ -53,13 +53,20 @@ getPuzzle('2').then((puzzle) => {
   console.log(`Error: ${err}`);
 });
 
-getCountry('ZA').then((country) => {
-  console.log(country.name);
+// getCountry('ZA').then((country) => {
+//   console.log(country.name);
+// }).catch((err) => {
+//   console.log(`Error: ${err}`);
+// });
+
+getLocation().then((location) => {
+  return getCountry(location.country)
+  // console.log(`You are currently in ${location.city} ${location.region} ${location.country}`);
+}).then((country) => {
+    console.log(country.name)
 }).catch((err) => {
-  console.log(`Error: ${err}`);
+    console.log(`Error: ${err}`);
 });
-
-
 
 
 
