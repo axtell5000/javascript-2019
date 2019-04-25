@@ -46,31 +46,20 @@ const renderGameArea = (game1, puzzleProgress, statusMsg) => {
 
 };
 
+// We receive a Promise back when calling getPuzzle
 getPuzzle('2').then((puzzle) => {
   console.log(puzzle);
-}, (err) => {
+}).catch( (err) => {
   console.log(`Error: ${err}`);
 });
 
 getCountry('ZA').then((country) => {
   console.log(country.name);
-}, (err) => {
+}).catch((err) => {
   console.log(`Error: ${err}`);
 });
 
-// Using fetch, uses Promises automatically
-fetch('http://puzzle.mead.io/puzzle', {}).then((response) => {
-  if (response.status === 200) {
-    return response.json(); // also part of promise, so unsure when we get this back, so we return it so we can chain
-  } else {
-    throw new Error('Unable to fetch the puzzle'); // THis will run the catch block below
-  }
-}).then((data) => {
-  console.log(data.puzzle);
-})
-.catch((error) => {
-  console.log(error);
-});
+
 
 
 
