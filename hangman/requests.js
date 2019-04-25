@@ -32,4 +32,4 @@ const getCountry = (countryCode) => new Promise((resolve, reject) => {
 
   countryRequest.open('GET', 'http://restcountries.eu/rest/v2/all');
   countryRequest.send();
-})
+});
