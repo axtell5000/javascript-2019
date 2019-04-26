@@ -16,9 +16,11 @@ startBtn.addEventListener('click', (e) => {
   startGame();
 });
 
-const startGame = () => {
+const startGame = async () => {
+  const puzzle = await getPuzzle('2');
+  let game1;
+  game1 = new Hangman(puzzle, 5);
 
-  const game1 = new Hangman('cat treat', 5);
   game1.status = 'playing';
 
   const puzzleProgress = document.querySelector('#puzzle-progress');
@@ -39,6 +41,8 @@ const startGame = () => {
   });
 };
 
+document.querySelector('#reset').addEventListener('click', startGame);
+
 const renderGameArea = (game1, puzzleProgress, statusMsg) => {
 
   puzzleProgress.textContent = game1.puzzle;
@@ -47,11 +51,11 @@ const renderGameArea = (game1, puzzleProgress, statusMsg) => {
 };
 
 // We receive a Promise back when calling getPuzzle
-getPuzzle('2').then((puzzle) => {
-  console.log(puzzle);
-}).catch( (err) => {
-  console.log(`Error: ${err}`);
-});
+// getPuzzle('2').then((puzzle) => {
+//   console.log(puzzle);
+// }).catch( (err) => {
+//   console.log(`Error: ${err}`);
+// });
 
 // getCountry('ZA').then((country) => {
 //   console.log(country.name);
