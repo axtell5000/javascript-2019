@@ -8,7 +8,7 @@
 // Just a note for reference: new XMLHttpRequest() does not have Promises built in like fetch(). Thats why we created
 // our own and used resolve and reject
 
-const getPuzzle = async (wordCount) => {
+export const getPuzzle = async (wordCount) => {
   const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
   if (response.status === 200) {
     const data = await response.json();
@@ -18,17 +18,17 @@ const getPuzzle = async (wordCount) => {
   }
 };
 
-const getPuzzleOld = (wordCount) => {
-  return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
-    if (response.status === 200) {
-      return response.json()
-    } else {
-      throw new Error('Unable to fetch new puzzle');
-    }
-  }).then((data) => { // little extra step so we can just use puzzle not data.puzzle in our app file
-    return data.puzzle;
-  });
-};
+// const getPuzzleOld = (wordCount) => {
+//   return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
+//     if (response.status === 200) {
+//       return response.json()
+//     } else {
+//       throw new Error('Unable to fetch new puzzle');
+//     }
+//   }).then((data) => { // little extra step so we can just use puzzle not data.puzzle in our app file
+//     return data.puzzle;
+//   });
+// };
 
 // Challenge
 const getCountry = (countryCode) => {

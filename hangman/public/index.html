@@ -5,10 +5,21 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Boilerplate</title>
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="icon" href="images/favicon.png">
+  <title>Hangman</title>
 </head>
 <body>
-  <h1>Boilerplate!</h1>
-  <script src="./scripts/bundle.js"></script>
+<h1>Hangman Game</h1>
+<div id="game-wrapper">
+  <div id="game-area">
+    <p>Puzzle progress <span id="puzzle-progress"></span></p>
+    <p id="statusMessage"></p>
+    <button id="reset" class="button">Reset</button>
+  </div>
+  <a href="" id="start-game" class="button">Start Game</a>
+</div>
+<script src="/scripts/bundle.js"></script>
+
 </body>
 </html>
