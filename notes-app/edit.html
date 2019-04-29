@@ -6,15 +6,29 @@
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Edit</title>
+  <link href="/images/favicon.png" rel="icon">
+  <link href="/styles/styles.css" rel="stylesheet">
 </head>
   <body>
+    <div class="header">
+      <div class="container">
+        <h1 class="header__title">Notes App</h1>
+        <h2 class="header__subtitle">Take notes and never forget</h2>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="actions__container actions__container--spaced">
+        <a href="/index.html">Home</a>
+        <span id="last-edited"></span>
+      </div>
+    </div>
     <form>
-      <button id="remove-note">Remove note</button>
-      <input type="text" id="note-title" placeholder="Enter Note title">
-      <span id="last-edited"></span>
-      <textarea id="note-body" placeholder="Enter note text"></textarea>
+      <input type="text" id="note-title" class="title-input" placeholder="Enter Note title">
+      <textarea class="body-input" id="note-body" placeholder="Enter note text"></textarea>
+      <button id="remove-note"class="button button--secondary">Remove note</button>
+
     </form>
-    <a href="/index.html">Home</a>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
     <script src="js/notes-functions.js"></script>
     <script src="js/notes-edit.js"></script>

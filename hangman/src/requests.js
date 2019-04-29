@@ -9,7 +9,7 @@
 // our own and used resolve and reject
 
 export const getPuzzle = async (wordCount) => {
-  const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`);
+  const response = await fetch(`//puzzle.mead.io/puzzle?wordCount=${wordCount}`);
   if (response.status === 200) {
     const data = await response.json();
     return data.puzzle;
@@ -33,7 +33,7 @@ export const getPuzzle = async (wordCount) => {
 // Challenge
 const getCountry = (countryCode) => {
 
-  return fetch('http://restcountries.eu/rest/v2/all').then((response) => {
+  return fetch('//restcountries.eu/rest/v2/all').then((response) => {
     if (response.status === 200) {
       return response.json();
     } else {
@@ -47,7 +47,7 @@ const getCountry = (countryCode) => {
 
 // Challenge 2
 const getLocation = () => {
-  return fetch('http://ipinfo.io/json?token={need+token}').then((response) => {
+  return fetch('//ipinfo.io/json?token={need+token}').then((response) => {
     if (response.status === 200) {
       return response.json();
     } else {
