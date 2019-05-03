@@ -54,6 +54,7 @@ const renderGameArea = (game1, puzzleProgress, statusMsg) => {
 };
 
 
+
 getLocation().then((location) => {
   return getCountry(location.country)
   // console.log(`You are currently in ${location.city} ${location.region} ${location.country}`);
