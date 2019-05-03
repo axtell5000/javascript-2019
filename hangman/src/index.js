@@ -53,6 +53,37 @@ const renderGameArea = (game1, puzzleProgress, statusMsg) => {
 
 };
 
+// Misc code - destructuring
+
+const todo = {
+  id: 'dsfsfsggsgsdg',
+  text: 'Hello hello',
+  completed: true
+};
+
+const printTodo = ({id, text}) => {
+  console.log(`Id: ${id}, Text: ${text}`);
+};
+
+printTodo(todo);
+
+//old way
+// const text = todo.text;
+// const completed = todo.completed;
+
+// using destructuring
+const { text:todoText, completed, details= 'No details provided', ...others} = todo;
+
+console.log(todoText);
+console.log(completed);
+console.log(details);
+console.log(others);
+
+// Destructuring with arrays
+const age = [33, 38, 4, 88, 66];
+const [firstAge, secondAge] = age;
+console.log(firstAge); //33
+console.log(secondAge); //38
 
 
 getLocation().then((location) => {
