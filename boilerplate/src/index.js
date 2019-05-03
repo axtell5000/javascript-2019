@@ -1,5 +1,5 @@
 // Some misc code
-// Spread operator
+// Rest parameter
 
 const calculateAverage = (thing, ...numbers) => {
   let sum = 0;
